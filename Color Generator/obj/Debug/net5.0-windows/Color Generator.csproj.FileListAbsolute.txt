@@ -1,0 +1,50 @@
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\CustomScrollbar.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Resources\Themes\Dark.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Resources\Themes\Light.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\BindablePasswordBox.g.cs
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\MainWindow.g.cs
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Views\MainView.g.cs
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\GeneratedInternalTypeHelper.g.cs
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator_MarkupCompile.cache
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator_MarkupCompile.lref
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\Color Generator.exe
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\Color Generator.deps.json
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\Color Generator.runtimeconfig.json
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\Color Generator.runtimeconfig.dev.json
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\Color Generator.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\ref\Color Generator.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\Color Generator.pdb
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\App.g.cs
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\App.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\BindablePasswordBox.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\CustomCheckBox.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\CustomComboBox.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\CustomListView.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\CustomRadiobutton.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\CustomSlider.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\CustomTabControl.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\Modal.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\Styles\DarkStyles.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\Styles\LightStyles.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Controls\ToggleSwitch.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\MainWindow.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Views\MainView.baml
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.g.resources
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.GeneratedMSBuildEditorConfig.editorconfig
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.AssemblyInfoInputs.cache
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.AssemblyInfo.cs
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.csproj.CoreCompileInputs.cache
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\ref\Color Generator.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.pdb
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.genruntimeconfig.cache
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.csproj.AssemblyReference.cache
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\Microsoft.Win32.SystemEvents.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\Newtonsoft.Json.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\System.Drawing.Common.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\Microsoft.Win32.SystemEvents.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\runtimes\unix\lib\netcoreapp3.1\System.Drawing.Common.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\bin\Debug\net5.0-windows\runtimes\win\lib\netcoreapp3.1\System.Drawing.Common.dll
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Color Generator.csproj.CopyComplete
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Views\DemoModal.g.cs
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\Views\DemoModal.baml

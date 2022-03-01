@@ -1,0 +1,155 @@
+﻿<UserControl x:Class="Color_Generator.Views.MainView"
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:Color_Generator.Views"
+             xmlns:viewmodels="clr-namespace:Color_Generator.ViewModels" 
+             xmlns:validators="clr-namespace:Color_Generator.Validators" 
+             mc:Ignorable="d"
+             d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
+             Width="500" MinHeight="300">
+    
+    <Border Background="#FFF" Padding="10 0 10 0">
+        <Grid>
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition MinWidth="256" />
+                <ColumnDefinition Width="10" />
+                <ColumnDefinition MinWidth="200" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition />
+                <RowDefinition />
+            </Grid.RowDefinitions>
+
+            <Rectangle Width="256" Height="256">
+                <Rectangle.Fill>
+                    <SolidColorBrush>
+                        <SolidColorBrush.Color>
+                            <MultiBinding Converter="{StaticResource RGBToColorConverter}">
+                                <Binding Path="CurrentColor.R" />
+                                <Binding Path="CurrentColor.G" />
+                                <Binding Path="CurrentColor.B" />
+                            </MultiBinding>
+                        </SolidColorBrush.Color>
+                    </SolidColorBrush>
+                </Rectangle.Fill>
+            </Rectangle>
+
+            <Grid Grid.Column="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
+                </Grid.RowDefinitions>
+
+                <DockPanel>
+                    <TextBlock Text="R" Width="20" VerticalAlignment="Center" TextAlignment="Center" />
+                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center">
+                        <TextBox.Text>
+                            <Binding Path="CurrentColor.R" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <validators:RGBValidator />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <Slider Value="{Binding CurrentColor.R}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center" />                    
+                </DockPanel>
+
+                <DockPanel Grid.Row="1">
+                    <TextBlock Text="G" Width="20" VerticalAlignment="Center" TextAlignment="Center" />
+                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center">
+                        <TextBox.Text>
+                            <Binding Path="CurrentColor.G" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <validators:RGBValidator />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <Slider Value="{Binding CurrentColor.G}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center" />                    
+                </DockPanel>
+
+                <DockPanel Grid.Row="2">
+                    <TextBlock Text="B" Width="20" VerticalAlignment="Center" TextAlignment="Center" />
+                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center">
+                        <TextBox.Text>
+                            <Binding Path="CurrentColor.B" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <validators:RGBValidator />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>
+                    <Slider Value="{Binding CurrentColor.B}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center" />                    
+                </DockPanel>
+
+                <DockPanel Grid.Row="3" Margin="0 5 0 5">
+                    <TextBlock Text="#" VerticalAlignment="Center" Width="20" TextAlignment="Center" />
+                    <Button Content="Copy" DockPanel.Dock="Right" Margin="5 0 0 0" Command="{Binding CoppyHexCommand}" MinWidth="40" />
+                    <Button Content="Apply" DockPanel.Dock="Right" Margin="5 0 0 0" Command="{Binding SetHexCommand}" 
+                            CommandParameter="{Binding Text, ElementName=CurrentHex}" MinWidth="40" />
+                    
+                    <TextBox x:Name="CurrentHex" VerticalContentAlignment="Center">
+                        <TextBox.Text>
+                            <MultiBinding UpdateSourceTrigger="Explicit" Converter="{StaticResource RGBToHexStringConverter}">
+                                <Binding Path="CurrentColor.R" />
+                                <Binding Path="CurrentColor.G" />
+                                <Binding Path="CurrentColor.B" />
+                            </MultiBinding>
+                        </TextBox.Text>
+                    </TextBox>
+                </DockPanel>
+
+                <Button Content="Randomize" Grid.Row="4" Margin="0 5 0 5" Command="{Binding RandomizeColorCommand}" />
+                
+                <Button Content="Pin" Grid.Row="5" Margin="0 5 0 5" Command="{Binding PinColorCommand}" />
+            </Grid>
+
+            <Grid Grid.Row="1" Grid.ColumnSpan="3">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="35" />
+                    <RowDefinition />
+                </Grid.RowDefinitions>
+
+                <DockPanel>
+                    <Button Content="Save All" DockPanel.Dock="Right" MinWidth="60" Command="{Binding SavePinnedColorsCommand}" />
+                    <Button Content="Demo" DockPanel.Dock="Right" MinWidth="60" Command="{Binding DemoModalCommand}" />
+                    <TextBlock Text="Pinned Colors" VerticalAlignment="Center" />
+                </DockPanel>
+
+                <ListView ItemsSource="{Binding PinnedColors}" Grid.Row="1">
+                    <ListView.ItemsPanel>
+                        <ItemsPanelTemplate>
+                            <WrapPanel />
+                        </ItemsPanelTemplate>
+                    </ListView.ItemsPanel>
+                    <ListView.ItemTemplate>
+                        <DataTemplate>
+                            <Border>
+                                <Rectangle Width="64" Height="64">
+                                    <Rectangle.Fill>
+                                        <SolidColorBrush>
+                                            <SolidColorBrush.Color>
+                                                <MultiBinding Converter="{StaticResource RGBToColorConverter}">
+                                                    <Binding Path="R" />
+                                                    <Binding Path="G" />
+                                                    <Binding Path="B" />
+                                                </MultiBinding>
+                                            </SolidColorBrush.Color>
+                                        </SolidColorBrush>
+                                    </Rectangle.Fill>
+                                </Rectangle>
+                            </Border>
+                        </DataTemplate>
+                    </ListView.ItemTemplate>
+                </ListView>
+            </Grid>
+        </Grid>
+    </Border>
+    
+</UserControl>
