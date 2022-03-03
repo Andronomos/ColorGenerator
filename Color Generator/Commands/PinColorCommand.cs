@@ -1,4 +1,6 @@
 ﻿using Color_Generator.Models;
+using Color_Generator.Stores;
+using Color_Generator.ViewModels;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -9,18 +11,16 @@ namespace Color_Generator.Commands
 {
     public class PinColorCommand : CommandBase
     {
-        private readonly UserColor _userColor;
-        private readonly List<UserColor> _pinnedColors;
+        private MainViewModel _viewModel;
 
-        public PinColorCommand(UserColor userColor, List<UserColor> pinnedColors)
+        public PinColorCommand(MainViewModel mainViewModel)
         {
-            _userColor = userColor;
-            _pinnedColors = pinnedColors;
+            _viewModel = mainViewModel;
         }
 
         public override void Execute(object parameter)
         {
-            _pinnedColors.Add(_userColor);
+            _viewModel.ColorStore.AddColor(_viewModel.CurrentColor.Copy());
         }
     }
 }
