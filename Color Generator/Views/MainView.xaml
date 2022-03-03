@@ -118,7 +118,6 @@
 
                 <DockPanel>
                     <Button Content="Save All" DockPanel.Dock="Right" MinWidth="60" Command="{Binding SavePinnedColorsCommand}" />
-                    <Button Content="Demo" DockPanel.Dock="Right" MinWidth="60" Command="{Binding DemoModalCommand}" />
                     <TextBlock Text="Pinned Colors" VerticalAlignment="Center" />
                 </DockPanel>
 

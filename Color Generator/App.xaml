@@ -28,10 +28,6 @@
             <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
                 <views:MainView />
             </DataTemplate>
-
-            <DataTemplate DataType="{x:Type viewModels:DemoModalViewModel}">
-                <views:DemoModal />
-            </DataTemplate>
         </ResourceDictionary>
     </Application.Resources>
 </Application>
