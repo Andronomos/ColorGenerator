@@ -11,12 +11,6 @@
         mc:Ignorable="d"
         WindowStartupLocation="CenterScreen"
         Title="MainWindow" SizeToContent="WidthAndHeight">
-
-    <Window.Resources>
-        <!--<DataTemplate DataType="{x:Type viewmodels:}">
-            <views: />
-        </DataTemplate>-->
-    </Window.Resources>
     
     <Grid>
         <controls:Modal IsOpen="{Binding IsModalOpen}" Panel.ZIndex="100">

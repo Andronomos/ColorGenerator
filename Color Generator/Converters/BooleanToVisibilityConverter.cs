@@ -14,21 +14,25 @@ namespace Color_Generator.Converters
         //Allow the DependencyObject to Set and Get registered values
         public bool IsInversed
         {
-            get { return (bool)GetValue(IsInversedProperty); }
-            set { SetValue(IsInversedProperty, value); }
+            get => (bool)GetValue(IsInversedProperty);
+            set => SetValue(IsInversedProperty, value);
         }
 
         public object Convert(object value, Type targetType, object parameter, CultureInfo culture)
         {
-            var isVisible = (bool)value;
+            bool isVisible = (bool)value;
 
             //Check is inversed is true, if so invert the current value.
             if (IsInversed)
+            {
                 isVisible = !isVisible;
+            }
 
             //Check current value and return
             if (isVisible)
+            {
                 return Visibility.Visible;
+            }
 
             return Visibility.Collapsed;
         }
