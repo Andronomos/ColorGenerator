@@ -1,15 +1,7 @@
 ﻿using Color_Generator.Models;
 using System;
 using System.Collections.Generic;
-using System.Collections.ObjectModel;
 using System.Drawing;
-using System.IO;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Newtonsoft.Json;
-using Newtonsoft.Json.Linq;
-using System.Windows.Media;
 
 namespace Color_Generator.Services
 {
@@ -26,7 +18,7 @@ namespace Color_Generator.Services
             _savePath = savePath;
         }
 
-        public void Save(ObservableCollection<UserColor> pinnedColors)
+        public void Save(List<UserColor> pinnedColors)
         {
             foreach (UserColor color in pinnedColors)
             {
@@ -34,7 +26,7 @@ namespace Color_Generator.Services
                 {
                     using (Graphics gfx = Graphics.FromImage(bmp))
                     {
-                        System.Drawing.Color c = System.Drawing.Color.FromArgb(255, color.R, color.G, color.B);
+                        Color c = Color.FromArgb(255, color.R, color.G, color.B);
                         gfx.FillRectangle(new SolidBrush(c), new Rectangle(new Point(0, 0), new Size(bmp.Width, bmp.Height)));
                     }
 
