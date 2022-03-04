@@ -13,6 +13,7 @@
                 <ResourceDictionary Source="Controls\CustomCheckBox.xaml" />
                 <ResourceDictionary Source="Controls\CustomComboBox.xaml" />
                 <ResourceDictionary Source="Controls\CustomListView.xaml" />
+                <ResourceDictionary Source="Controls\CustomSlider.xaml" />
                 <ResourceDictionary Source="Controls\CustomRadioButton.xaml" />
                 <ResourceDictionary Source="Controls\CustomTabControl.xaml" />
                 <ResourceDictionary Source="Controls\ToggleSwitch.xaml" />
