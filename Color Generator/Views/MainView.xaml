@@ -6,6 +6,7 @@
              xmlns:local="clr-namespace:Color_Generator.Views"
              xmlns:viewmodels="clr-namespace:Color_Generator.ViewModels" 
              xmlns:validators="clr-namespace:Color_Generator.Validators" 
+             xmlns:controls="clr-namespace:Color_Generator.Controls" 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
              Width="500" MinHeight="300">
@@ -19,7 +20,7 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition />
+                <RowDefinition MinHeight="100" />
             </Grid.RowDefinitions>
 
             <Rectangle Width="256" Height="256">
@@ -43,12 +44,12 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
-                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
 
                 <DockPanel>
-                    <TextBlock Text="R" Width="20" VerticalAlignment="Center" TextAlignment="Center" />
-                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center">
+                    <TextBlock Text="R" Width="20" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Primary}" />
+                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center"
+                              Style="{StaticResource Light.TextBox}">
                         <TextBox.Text>
                             <Binding Path="CurrentColor.R" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                 <Binding.ValidationRules>
@@ -57,12 +58,14 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <Slider Value="{Binding CurrentColor.R}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center" />                    
+                    <controls:CustomSlider Value="{Binding CurrentColor.R}" Minimum="0" Maximum="255" Grid.Column="1"
+                                           Style="{StaticResource Light.Slider}"/>                    
                 </DockPanel>
 
                 <DockPanel Grid.Row="1">
-                    <TextBlock Text="G" Width="20" VerticalAlignment="Center" TextAlignment="Center" />
-                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center">
+                    <TextBlock Text="G" Width="20" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Primary}" />
+                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center"
+                              Style="{StaticResource Light.TextBox}">
                         <TextBox.Text>
                             <Binding Path="CurrentColor.G" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                 <Binding.ValidationRules>
@@ -71,12 +74,14 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <Slider Value="{Binding CurrentColor.G}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center" />                    
+                    <controls:CustomSlider Value="{Binding CurrentColor.G}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center"
+                                           Style="{StaticResource Light.Slider}"/>                    
                 </DockPanel>
 
                 <DockPanel Grid.Row="2">
-                    <TextBlock Text="B" Width="20" VerticalAlignment="Center" TextAlignment="Center" />
-                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center">
+                    <TextBlock Text="B" Width="20" VerticalAlignment="Center" TextAlignment="Center" Foreground="#777A7C" />
+                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center"
+                              Style="{StaticResource Light.TextBox}">
                         <TextBox.Text>
                             <Binding Path="CurrentColor.B" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                 <Binding.ValidationRules>
@@ -85,16 +90,19 @@
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <Slider Value="{Binding CurrentColor.B}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center" />                    
+                    <controls:CustomSlider Value="{Binding CurrentColor.B}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center"
+                                           Style="{StaticResource Light.Slider}"/>                    
                 </DockPanel>
 
                 <DockPanel Grid.Row="3" Margin="0 5 0 5">
-                    <TextBlock Text="#" VerticalAlignment="Center" Width="20" TextAlignment="Center" />
-                    <Button Content="Copy" DockPanel.Dock="Right" Margin="5 0 0 0" Command="{Binding CoppyHexCommand}" MinWidth="40" />
+                    <TextBlock Text="#" VerticalAlignment="Center" Width="20" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Primary}" />
+                    <Button Content="Copy" Command="{Binding CopyHexCommand}" CommandParameter="{Binding Text, ElementName=CurrentHex}"
+                            MinWidth="40" DockPanel.Dock="Right" Margin="5 0 0 0"
+                            Style="{StaticResource Light.Btn.Secondary}"/>
                     <Button Content="Apply" DockPanel.Dock="Right" Margin="5 0 0 0" Command="{Binding SetHexCommand}" 
-                            CommandParameter="{Binding Text, ElementName=CurrentHex}" MinWidth="40" />
+                            CommandParameter="{Binding Text, ElementName=CurrentHex}" MinWidth="40" Style="{StaticResource Light.Btn.Secondary}" />
                     
-                    <TextBox x:Name="CurrentHex" VerticalContentAlignment="Center">
+                    <TextBox x:Name="CurrentHex" VerticalContentAlignment="Center" Style="{StaticResource Light.TextBox}">
                         <TextBox.Text>
                             <MultiBinding UpdateSourceTrigger="Explicit" Converter="{StaticResource RGBToHexStringConverter}">
                                 <Binding Path="CurrentColor.R" />
@@ -105,20 +113,30 @@
                     </TextBox>
                 </DockPanel>
 
-                <Button Content="Randomize" Grid.Row="4" Margin="0 5 0 5" Command="{Binding RandomizeColorCommand}" />
-                
-                <Button Content="Pin" Grid.Row="5" Margin="0 5 0 5" Command="{Binding PinColorCommand}" />
+                <Grid Grid.Row="4">
+                    <Grid.ColumnDefinitions>
+                        <ColumnDefinition />
+                        <ColumnDefinition Width="5" />
+                        <ColumnDefinition />
+                    </Grid.ColumnDefinitions>
+                    <Button Content="Randomize" Margin="0 5 0 5" Command="{Binding RandomizeColorCommand}"
+                        Style="{StaticResource Light.Btn.Secondary}"/>
+
+                    <Button Content="Pin" Margin="0 5 0 5" Grid.Column="2" Command="{Binding PinColorCommand}"
+                        Style="{StaticResource Light.Btn.Secondary}" />
+                </Grid>
             </Grid>
 
             <Grid Grid.Row="1" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
-                    <RowDefinition Height="35" />
+                    <RowDefinition Height="40" />
                     <RowDefinition />
                 </Grid.RowDefinitions>
 
                 <DockPanel>
-                    <Button Content="Save All" DockPanel.Dock="Right" MinWidth="60" Command="{Binding SavePinnedColorsCommand}" />
-                    <TextBlock Text="Pinned Colors" VerticalAlignment="Center" />
+                    <Button Content="Save All" DockPanel.Dock="Right" MinWidth="60" Command="{Binding SavePinnedColorsCommand}"
+                            Style="{StaticResource Light.Btn.Secondary}" Margin="0 3 0 3"/>
+                    <TextBlock Text="Pinned Colors" VerticalAlignment="Center" Style="{StaticResource Light.TextBlock.Primary}" />
                 </DockPanel>
 
                 <ListView ItemsSource="{Binding PinnedColors}" Grid.Row="1">
