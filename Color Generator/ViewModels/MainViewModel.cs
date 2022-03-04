@@ -27,6 +27,7 @@ namespace Color_Generator.ViewModels
         public ICommand RandomizeColorCommand { get; set; }
         public ICommand PinColorCommand { get; set; }
         public ICommand SavePinnedColorsCommand { get; set; }
+        public ICommand CopyHexCommand { get; set; }
 
         public MainViewModel(NavigationStore navigationStore, ColorStore colorStore)
         {
@@ -39,7 +40,8 @@ namespace Color_Generator.ViewModels
             SetHexCommand = new SetRGBFromHexCommand(CurrentColor);
             RandomizeColorCommand = new RandomizeColorCommand(CurrentColor);
             PinColorCommand = new PinColorCommand(this);
-            SavePinnedColorsCommand = new SavePinnedColorsCommand(PinnedColors, _bitmapWidth, _bitmapHeight, _savePath);
+            SavePinnedColorsCommand = new SavePinnedColorsCommand(colorStore, _bitmapWidth, _bitmapHeight, _savePath);
+            CopyHexCommand = new CopyHexCommand();
         }
 
         private void ColorStoreColorsChangedEventHandler(object sender, EventArgs e)
