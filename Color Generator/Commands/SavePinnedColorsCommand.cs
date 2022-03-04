@@ -1,30 +1,25 @@
-﻿using Color_Generator.Models;
-using Color_Generator.Services;
-using System.Collections.ObjectModel;
+﻿using Color_Generator.Services;
+using Color_Generator.Stores;
 
 namespace Color_Generator.Commands
 {
     public class SavePinnedColorsCommand : CommandBase
     {
-        private readonly ObservableCollection<UserColor> _pinnedColors;
+        private readonly ColorStore _colorStore;
         private readonly SaveColorsService _saveColorsService;
         private readonly string _savePath;
-        private readonly int _bmpWidth;
-        private readonly int _bmpHeight;
 
-        public SavePinnedColorsCommand(ObservableCollection<UserColor> pinnedColors, int bmpWidth, int bmpHeight, string savePath)
+        public SavePinnedColorsCommand(ColorStore colorStore, int bitmapWidth, int bitmapHeight, string savePath)
         {
-            _pinnedColors = pinnedColors;
-            _bmpWidth = bmpWidth;
-            _bmpHeight = bmpHeight;
+            _colorStore = colorStore;
             _savePath = savePath;
-            SaveColorsService saveColorsService = new SaveColorsService(_bmpWidth, _bmpHeight, _savePath);
+            SaveColorsService saveColorsService = new SaveColorsService(bitmapWidth, bitmapHeight, _savePath);
             _saveColorsService = saveColorsService;
         }
 
         public override void Execute(object parameter)
         {
-            _saveColorsService.Save(_pinnedColors);
+            _saveColorsService.Save(_colorStore.Colors);
         }
     }
 }
