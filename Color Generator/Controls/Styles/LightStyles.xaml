@@ -8,7 +8,7 @@
         <Setter Property="FontFamily" Value="Verdana"/>
         <Setter Property="FontSize" Value="12"/>
         <Setter Property="Foreground" Value="#FFF"/>
-        <Setter Property="Height" Value="37"/>
+        <Setter Property="Height" Value="Auto"/>
         <Setter Property="HorizontalContentAlignment" Value="Center"/>
         <Setter Property="Padding" Value="5 1 5 1"/>
         <Setter Property="VerticalContentAlignment" Value="Center"/>
@@ -75,7 +75,7 @@
         <Setter Property="Background" Value="{StaticResource Light.TextBox.Static.Background}" />
         <Setter Property="Foreground" Value="{StaticResource Light.TextBox.Static.Foreground}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
-        <Setter Property="MinHeight" Value="37" />
+        <Setter Property="MinHeight" Value="10" />
         <Setter Property="Padding" Value="5 1 5 1" />
         <Setter Property="BorderThickness" Value="1" />
         <Style.Triggers>
@@ -207,5 +207,31 @@
             </Trigger>
         </Style.Triggers>
     </Style>
+
+    <Style x:Key="Light.Slider" BasedOn="{StaticResource {x:Type controls:CustomSlider}}" TargetType="{x:Type controls:CustomSlider}">
+        <Setter Property="DecreaseRepeatButton" Value="{StaticResource Light.Slider.Static.DecreaseButton.Background}" />
+        <Setter Property="IncreaseRepeatButton" Value="{StaticResource Light.Slider.Static.Track.Background}" />
+        <Setter Property="Thumb" Value="{StaticResource Light.Slider.Static.Thumb.Background}" />
+        <Setter Property="ThumbStroke" Value="{StaticResource Light.Slider.Static.Thumb.Stroke}" />
+        <Setter Property="ThumbStrokeThickness" Value="1" />
+        <Setter Property="TickColor" Value="{StaticResource Light.Slider.Static.Ticks}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <Setter Property="DecreaseRepeatButton" Value="{StaticResource Light.Slider.Disabled.DecreaseButton.Background}" />
+                <Setter Property="IncreaseRepeatButton" Value="{StaticResource Light.Slider.Disabled.Track.Background}" />
+                <Setter Property="Thumb" Value="{StaticResource Light.Slider.Disabled.Thumb.Background}" />
+                <Setter Property="ThumbStrokeThickness" Value="0" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+
+    <Style x:Key="Light.TextBlock.Primary" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#777A7C" />
+    </Style>
+
+    <!--<Style x:Key="Light.TextBlock.Secondary" TargetType="{x:Type TextBlock}">
+        <Setter Property="Foreground" Value="#777A7C" />
+    </Style>-->
 
 </ResourceDictionary>
