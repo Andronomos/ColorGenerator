@@ -15,7 +15,7 @@
                         <Grid Width="18" Height="18">
                             <Ellipse Name="Border" Fill="{TemplateBinding Background}" StrokeThickness="{Binding StrokeThickness, RelativeSource={RelativeSource TemplatedParent}}" 
                                      Stroke="{TemplateBinding BorderBrush}" />
-                            <Ellipse Name="Dot" Fill="{Binding DotFill, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="5" />
+                            <Ellipse Name="Dot" Fill="{Binding CheckFill, RelativeSource={RelativeSource Mode=TemplatedParent}}" Margin="5" />
                         </Grid>
                         <ContentPresenter Name="content" Grid.Column="1" Margin="5,0,0,0" HorizontalAlignment="Left"  VerticalAlignment="Center"/>
                     </Grid>

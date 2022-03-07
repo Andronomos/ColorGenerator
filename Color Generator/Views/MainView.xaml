@@ -7,11 +7,12 @@
              xmlns:viewmodels="clr-namespace:Color_Generator.ViewModels" 
              xmlns:validators="clr-namespace:Color_Generator.Validators" 
              xmlns:controls="clr-namespace:Color_Generator.Controls" 
+             xmlns:stores="clr-namespace:Color_Generator.Stores" 
              mc:Ignorable="d"
              d:DataContext="{d:DesignInstance Type=viewmodels:MainViewModel}"
              Width="500" MinHeight="300">
     
-    <Border Background="#FFF" Padding="10 0 10 0">
+    <Border Background="#FFF" Padding="10">
         <Grid>
             <Grid.ColumnDefinitions>
                 <ColumnDefinition MinWidth="256" />
@@ -20,14 +21,15 @@
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
                 <RowDefinition />
-                <RowDefinition MinHeight="100" />
+                <RowDefinition />
             </Grid.RowDefinitions>
 
             <Rectangle Width="256" Height="256">
                 <Rectangle.Fill>
                     <SolidColorBrush>
                         <SolidColorBrush.Color>
-                            <MultiBinding Converter="{StaticResource RGBToColorConverter}">
+                            <MultiBinding Converter="{StaticResource ARGBToColorConverter}">
+                                <Binding Path="CurrentColor.A" />
                                 <Binding Path="CurrentColor.R" />
                                 <Binding Path="CurrentColor.G" />
                                 <Binding Path="CurrentColor.B" />
@@ -44,58 +46,175 @@
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
                     <RowDefinition Height="40" />
+                    <RowDefinition Height="40" />
                 </Grid.RowDefinitions>
 
                 <DockPanel>
-                    <TextBlock Text="R" Width="20" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Primary}" />
+                    <Button DockPanel.Dock="Right" Margin="5 0 0 0" Command="{Binding ToggleLockCommand}" CommandParameter="A">
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill" Width="24" Height="24">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SettingsStore.AlphaIsLocked}" Value="True">
+                                            <Setter Property="Image.Source" Value="/Resources/lock_locked.png" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SettingsStore.AlphaIsLocked}" Value="False">
+                                            <Setter Property="Image.Source" Value="/Resources/lock_unlocked.png" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ButtonBase}" TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Transparent" />
+                                <Setter Property="Padding" Value="0"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <TextBlock Text="A" Width="20" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Header.Primary}" />
                     <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center"
-                              Style="{StaticResource Light.TextBox}">
+                             HorizontalContentAlignment="Center" Style="{StaticResource Light.TextBox}"
+                             IsEnabled="{Binding SettingsStore.AlphaIsLocked, Converter={StaticResource InverseBooleanConverter}}">
                         <TextBox.Text>
-                            <Binding Path="CurrentColor.R" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                            <Binding Path="CurrentColor.A" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                 <Binding.ValidationRules>
-                                    <validators:RGBValidator />
+                                    <validators:ARGBValidator />
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
-                    <controls:CustomSlider Value="{Binding CurrentColor.R}" Minimum="0" Maximum="255" Grid.Column="1"
-                                           Style="{StaticResource Light.Slider}"/>                    
+                    <controls:CustomSlider Value="{Binding CurrentColor.A}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center"
+                                           Style="{StaticResource Light.Slider}" 
+                                           IsEnabled="{Binding SettingsStore.AlphaIsLocked, Converter={StaticResource InverseBooleanConverter}}" />
                 </DockPanel>
 
                 <DockPanel Grid.Row="1">
-                    <TextBlock Text="G" Width="20" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Primary}" />
+                    <Button DockPanel.Dock="Right" Margin="5 0 0 0" Command="{Binding ToggleLockCommand}" CommandParameter="R">
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill" Width="24" Height="24">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SettingsStore.RedIsLocked}" Value="True">
+                                            <Setter Property="Image.Source" Value="/Resources/lock_locked.png" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SettingsStore.RedIsLocked}" Value="False">
+                                            <Setter Property="Image.Source" Value="/Resources/lock_unlocked.png" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ButtonBase}" TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Transparent" />
+                                <Setter Property="Padding" Value="0"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>                    
+                    <TextBlock Text="R" Width="20" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Header.Primary}" />
                     <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center"
-                              Style="{StaticResource Light.TextBox}">
+                             HorizontalContentAlignment="Center" Style="{StaticResource Light.TextBox}"
+                             IsEnabled="{Binding SettingsStore.RedIsLocked, Converter={StaticResource InverseBooleanConverter}}">
+                        <TextBox.Text>
+                            <Binding Path="CurrentColor.R" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
+                                <Binding.ValidationRules>
+                                    <validators:ARGBValidator />
+                                </Binding.ValidationRules>
+                            </Binding>
+                        </TextBox.Text>
+                    </TextBox>                    
+                    <controls:CustomSlider Value="{Binding CurrentColor.R}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center"
+                                           Style="{StaticResource Light.Slider}"
+                                           IsEnabled="{Binding SettingsStore.RedIsLocked, Converter={StaticResource InverseBooleanConverter}}"/>                    
+                </DockPanel>
+
+                <DockPanel Grid.Row="2">
+                    <Button DockPanel.Dock="Right" Margin="5 0 0 0" Command="{Binding ToggleLockCommand}" CommandParameter="G">
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill" Width="24" Height="24">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SettingsStore.GreenIsLocked}" Value="True">
+                                            <Setter Property="Image.Source" Value="/Resources/lock_locked.png" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SettingsStore.GreenIsLocked}" Value="False">
+                                            <Setter Property="Image.Source" Value="/Resources/lock_unlocked.png" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ButtonBase}" TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Transparent" />
+                                <Setter Property="Padding" Value="0"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <TextBlock Text="G" Width="20" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Header.Primary}" />
+                    <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center"
+                             HorizontalContentAlignment="Center" Style="{StaticResource Light.TextBox}"
+                             IsEnabled="{Binding SettingsStore.GreenIsLocked, Converter={StaticResource InverseBooleanConverter}}">
                         <TextBox.Text>
                             <Binding Path="CurrentColor.G" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                 <Binding.ValidationRules>
-                                    <validators:RGBValidator />
+                                    <validators:ARGBValidator />
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
                     <controls:CustomSlider Value="{Binding CurrentColor.G}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center"
-                                           Style="{StaticResource Light.Slider}"/>                    
+                                           Style="{StaticResource Light.Slider}"
+                                           IsEnabled="{Binding SettingsStore.GreenIsLocked, Converter={StaticResource InverseBooleanConverter}}"/>                    
                 </DockPanel>
 
-                <DockPanel Grid.Row="2">
-                    <TextBlock Text="B" Width="20" VerticalAlignment="Center" TextAlignment="Center" Foreground="#777A7C" />
+                <DockPanel Grid.Row="3">
+                    <Button DockPanel.Dock="Right" Margin="5 0 0 0" Command="{Binding ToggleLockCommand}" CommandParameter="B">
+                        <Image RenderOptions.BitmapScalingMode="HighQuality" Stretch="Fill" Width="24" Height="24">
+                            <Image.Style>
+                                <Style TargetType="{x:Type Image}">
+                                    <Style.Triggers>
+                                        <DataTrigger Binding="{Binding SettingsStore.BlueIsLocked}" Value="True">
+                                            <Setter Property="Image.Source" Value="/Resources/lock_locked.png" />
+                                        </DataTrigger>
+                                        <DataTrigger Binding="{Binding SettingsStore.BlueIsLocked}" Value="False">
+                                            <Setter Property="Image.Source" Value="/Resources/lock_unlocked.png" />
+                                        </DataTrigger>
+                                    </Style.Triggers>
+                                </Style>
+                            </Image.Style>
+                        </Image>
+                        <Button.Style>
+                            <Style BasedOn="{StaticResource ButtonBase}" TargetType="{x:Type Button}">
+                                <Setter Property="Background" Value="Transparent" />
+                                <Setter Property="Foreground" Value="Transparent" />
+                                <Setter Property="Padding" Value="0"/>
+                            </Style>
+                        </Button.Style>
+                    </Button>
+                    <TextBlock Text="B" Width="20" VerticalAlignment="Center" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Header.Primary}" />
                     <TextBox Grid.Column="2" DockPanel.Dock="Right" Width="45" VerticalAlignment="Stretch" Margin="5 5 0 5" VerticalContentAlignment="Center"
-                              Style="{StaticResource Light.TextBox}">
+                             HorizontalContentAlignment="Center" Style="{StaticResource Light.TextBox}"
+                             IsEnabled="{Binding SettingsStore.BlueIsLocked, Converter={StaticResource InverseBooleanConverter}}">
                         <TextBox.Text>
                             <Binding Path="CurrentColor.B" UpdateSourceTrigger="PropertyChanged" Mode="TwoWay">
                                 <Binding.ValidationRules>
-                                    <validators:RGBValidator />
+                                    <validators:ARGBValidator />
                                 </Binding.ValidationRules>
                             </Binding>
                         </TextBox.Text>
                     </TextBox>
                     <controls:CustomSlider Value="{Binding CurrentColor.B}" Minimum="0" Maximum="255" Grid.Column="1" VerticalAlignment="Center"
-                                           Style="{StaticResource Light.Slider}"/>                    
+                                           Style="{StaticResource Light.Slider}"
+                                           IsEnabled="{Binding SettingsStore.BlueIsLocked, Converter={StaticResource InverseBooleanConverter}}"/>                    
                 </DockPanel>
 
-                <DockPanel Grid.Row="3" Margin="0 5 0 5">
-                    <TextBlock Text="#" VerticalAlignment="Center" Width="20" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Primary}" />
+                <DockPanel Grid.Row="4" Margin="0 5 0 5">
+                    <TextBlock Text="#" VerticalAlignment="Center" Width="20" TextAlignment="Center" Style="{StaticResource Light.TextBlock.Header.Primary}" />
                     <Button Content="Copy" Command="{Binding CopyHexCommand}" CommandParameter="{Binding Text, ElementName=CurrentHex}"
                             MinWidth="40" DockPanel.Dock="Right" Margin="5 0 0 0"
                             Style="{StaticResource Light.Btn.Secondary}"/>
@@ -104,16 +223,19 @@
                     
                     <TextBox x:Name="CurrentHex" VerticalContentAlignment="Center" Style="{StaticResource Light.TextBox}">
                         <TextBox.Text>
-                            <MultiBinding UpdateSourceTrigger="Explicit" Converter="{StaticResource RGBToHexStringConverter}">
+                            <MultiBinding UpdateSourceTrigger="PropertyChanged" Converter="{StaticResource RGBToHexStringConverter}">
                                 <Binding Path="CurrentColor.R" />
                                 <Binding Path="CurrentColor.G" />
                                 <Binding Path="CurrentColor.B" />
+                                <MultiBinding.ValidationRules>
+                                    <validators:HexValidator />
+                                </MultiBinding.ValidationRules>
                             </MultiBinding>
                         </TextBox.Text>
                     </TextBox>
                 </DockPanel>
 
-                <Grid Grid.Row="4">
+                <Grid Grid.Row="5">
                     <Grid.ColumnDefinitions>
                         <ColumnDefinition />
                         <ColumnDefinition Width="5" />
@@ -130,41 +252,29 @@
             <Grid Grid.Row="1" Grid.ColumnSpan="3">
                 <Grid.RowDefinitions>
                     <RowDefinition Height="40" />
-                    <RowDefinition />
+                    <RowDefinition Height="128" />
+                    <RowDefinition Height="45" />
                 </Grid.RowDefinitions>
 
                 <DockPanel>
-                    <Button Content="Save All" DockPanel.Dock="Right" MinWidth="60" Command="{Binding SavePinnedColorsCommand}"
-                            Style="{StaticResource Light.Btn.Secondary}" Margin="0 3 0 3"/>
-                    <TextBlock Text="Pinned Colors" VerticalAlignment="Center" Style="{StaticResource Light.TextBlock.Primary}" />
+                    <controls:CustomRadioButton Content="Large" GroupName="PinSize" 
+                                                IsChecked="{Binding SettingsStore.PinSize, Converter={StaticResource PinSizeToBooleanConverter}, ConverterParameter={x:Static stores:PinSize.Large}}"
+                                                Style="{StaticResource Light.RadioButton}" DockPanel.Dock="Right" />
+                    <controls:CustomRadioButton Content="Medium" GroupName="PinSize" Margin="0 0 5 0"
+                                                IsChecked="{Binding SettingsStore.PinSize, Converter={StaticResource PinSizeToBooleanConverter}, ConverterParameter={x:Static stores:PinSize.Medium}}"
+                                                Style="{StaticResource Light.RadioButton}" DockPanel.Dock="Right" />
+                    <controls:CustomRadioButton Content="Small" GroupName="PinSize" Margin="0 0 5 0"
+                                                IsChecked="{Binding SettingsStore.PinSize, Converter={StaticResource PinSizeToBooleanConverter}, ConverterParameter={x:Static stores:PinSize.Small}}"
+                                                Style="{StaticResource Light.RadioButton}" DockPanel.Dock="Right" />            
+                    <TextBlock Text="Size:" VerticalAlignment="Center" Style="{StaticResource Light.TextBlock.Header.Secondary}" DockPanel.Dock="Right" Margin="0 0 5 0" />
+                    <TextBlock Text="Pinned Colors" VerticalAlignment="Center" Style="{StaticResource Light.TextBlock.Header.Primary}" />                    
                 </DockPanel>
 
-                <ListView ItemsSource="{Binding PinnedColors}" Grid.Row="1">
-                    <ListView.ItemsPanel>
-                        <ItemsPanelTemplate>
-                            <WrapPanel />
-                        </ItemsPanelTemplate>
-                    </ListView.ItemsPanel>
-                    <ListView.ItemTemplate>
-                        <DataTemplate>
-                            <Border>
-                                <Rectangle Width="64" Height="64">
-                                    <Rectangle.Fill>
-                                        <SolidColorBrush>
-                                            <SolidColorBrush.Color>
-                                                <MultiBinding Converter="{StaticResource RGBToColorConverter}">
-                                                    <Binding Path="R" />
-                                                    <Binding Path="G" />
-                                                    <Binding Path="B" />
-                                                </MultiBinding>
-                                            </SolidColorBrush.Color>
-                                        </SolidColorBrush>
-                                    </Rectangle.Fill>
-                                </Rectangle>
-                            </Border>
-                        </DataTemplate>
-                    </ListView.ItemTemplate>
-                </ListView>
+                <local:PinnedColorsView Grid.Row="1" />
+                
+                <Button Content="Save All" DockPanel.Dock="Right" MinWidth="100" Grid.Row="2" HorizontalAlignment="Right"
+                        Command="{Binding SavePinnedColorsCommand}"
+                        Style="{StaticResource Light.Btn.Secondary}" Margin="0 3 0 3"/>
             </Grid>
         </Grid>
     </Border>

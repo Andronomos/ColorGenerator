@@ -165,11 +165,11 @@
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "F:\\dev\\code\\dotnet\\c#\\vs solutions\\.net 5\\apps\\Color Generator\\Color Generator\\Color Generator.csproj",
+      "projectUniqueName": "F:\\dev\\code\\dotnet\\c#\\vs solutions\\.net 5\\apps\\ColorGenerator\\Color Generator\\Color Generator.csproj",
       "projectName": "Color Generator",
-      "projectPath": "F:\\dev\\code\\dotnet\\c#\\vs solutions\\.net 5\\apps\\Color Generator\\Color Generator\\Color Generator.csproj",
+      "projectPath": "F:\\dev\\code\\dotnet\\c#\\vs solutions\\.net 5\\apps\\ColorGenerator\\Color Generator\\Color Generator.csproj",
       "packagesPath": "C:\\Users\\User\\.nuget\\packages\\",
-      "outputPath": "F:\\dev\\code\\dotnet\\c#\\vs solutions\\.net 5\\apps\\Color Generator\\Color Generator\\obj\\",
+      "outputPath": "F:\\dev\\code\\dotnet\\c#\\vs solutions\\.net 5\\apps\\ColorGenerator\\Color Generator\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
         "C:\\Users\\User\\AppData\\Roaming\\NuGet\\NuGet.Config",

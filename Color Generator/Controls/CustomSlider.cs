@@ -8,13 +8,13 @@ namespace Color_Generator.Controls
     public class CustomSlider : Slider
     {
         /** Thumb **/
-        public static readonly DependencyProperty ThumbProperty =
-            DependencyProperty.Register("Thumb", typeof(Brush), typeof(CustomSlider), new FrameworkPropertyMetadata(Brushes.Orange));
+        public static readonly DependencyProperty ThumbBrushProperty =
+           DependencyProperty.Register("ThumbBrush", typeof(Brush), typeof(CustomSlider), new FrameworkPropertyMetadata(Brushes.Orange));
 
-        public Brush Thumb
+        public Brush ThumbBrush
         {
-            get => (Brush)GetValue(ThumbProperty);
-            set => SetValue(ThumbProperty, value);
+            get => (Brush)GetValue(ThumbBrushProperty);
+            set => SetValue(ThumbBrushProperty, value);
         }
 
         public static readonly DependencyProperty ThumbStrokeProperty =
@@ -27,12 +27,21 @@ namespace Color_Generator.Controls
         }
 
         public static readonly DependencyProperty ThumbStrokeThicknessProperty =
-           DependencyProperty.Register("ThumbStrokeThickness", typeof(Thickness), typeof(CustomSlider));
+           DependencyProperty.Register("ThumbStrokeThickness", typeof(double), typeof(CustomSlider));
 
-        public Thickness ThumbStrokeThickness
+        public double ThumbStrokeThickness
         {
-            get => (Thickness)GetValue(ThumbStrokeThicknessProperty);
+            get => (double)GetValue(ThumbStrokeThicknessProperty);
             set => SetValue(ThumbStrokeThicknessProperty, value);
+        }
+
+        public static readonly DependencyProperty ThumbCornerRadiusProperty =
+           DependencyProperty.Register("ThumbCornerRadius", typeof(CornerRadius), typeof(CustomSlider));
+
+        public CornerRadius ThumbCornerRadius
+        {
+            get => (CornerRadius)GetValue(ThumbCornerRadiusProperty);
+            set => SetValue(ThumbCornerRadiusProperty, value);
         }
 
         /** Ticks **/
@@ -45,23 +54,34 @@ namespace Color_Generator.Controls
             set => SetValue(TickColorProperty, value);
         }
 
-        /** Buttons **/
-        public static readonly DependencyProperty DecreaseButtonProperty =
-           DependencyProperty.Register("DecreaseRepeatButton", typeof(Brush), typeof(CustomSlider), new FrameworkPropertyMetadata(Brushes.Cornsilk));
-
-        public Brush DecreaseRepeatButton
-        {
-            get => (Brush)GetValue(DecreaseButtonProperty);
-            set => SetValue(DecreaseButtonProperty, value);
-        }
-
-        public static readonly DependencyProperty IncreaseButtonProperty =
-           DependencyProperty.Register("IncreaseRepeatButton", typeof(Brush), typeof(CustomSlider), new FrameworkPropertyMetadata(Brushes.Coral));
+        /** Track **/
+        public static readonly DependencyProperty IncreaseRepeatButtonProperty =
+            DependencyProperty.Register("IncreaseRepeatButton", typeof(Brush), typeof(CustomSlider), new FrameworkPropertyMetadata(Brushes.Cornsilk));
 
         public Brush IncreaseRepeatButton
         {
-            get => (Brush)GetValue(IncreaseButtonProperty);
-            set => SetValue(IncreaseButtonProperty, value);
+            get => (Brush)GetValue(IncreaseRepeatButtonProperty);
+            set => SetValue(IncreaseRepeatButtonProperty, value);
+        }
+
+        /** Buttons **/
+        public static readonly DependencyProperty DecreaseRepeatButtonProperty =
+            DependencyProperty.Register("DecreaseRepeatButton", typeof(Brush), typeof(CustomSlider), new FrameworkPropertyMetadata(Brushes.Cornsilk));
+
+        public Brush DecreaseRepeatButton
+        {
+            get => (Brush)GetValue(DecreaseRepeatButtonProperty);
+            set => SetValue(DecreaseRepeatButtonProperty, value);
+        }
+
+        /** Misc **/
+        public static readonly DependencyProperty SelectionRangeProperty =
+            DependencyProperty.Register("SelectionRange", typeof(Brush), typeof(CustomSlider), new FrameworkPropertyMetadata(Brushes.Cornsilk));
+
+        public Brush SelectionRange
+        {
+            get => (Brush)GetValue(SelectionRangeProperty);
+            set => SetValue(SelectionRangeProperty, value);
         }
     }
 }

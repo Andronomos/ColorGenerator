@@ -45,8 +45,6 @@ namespace System.Windows.Input
         private readonly Action _execute;
         private readonly Func<bool> _canExecute = null;
 
-        public event EventHandler CanExecuteChanged;
-
         public RelayCommand(Action execute, Func<bool> canExecute)
         {
             _execute = execute;

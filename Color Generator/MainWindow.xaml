@@ -8,9 +8,9 @@
         xmlns:views="clr-namespace:Color_Generator.Views" 
         xmlns:controls="clr-namespace:Color_Generator.Controls" 
         d:DataContext="{d:DesignInstance Type=viewmodels:WindowViewModel}"
-        mc:Ignorable="d"
+        mc:Ignorable="d" ResizeMode="CanMinimize"
         WindowStartupLocation="CenterScreen"
-        Title="MainWindow" SizeToContent="WidthAndHeight">
+        Title="ColorGenerator" SizeToContent="WidthAndHeight">
     
     <Grid>
         <controls:Modal IsOpen="{Binding IsModalOpen}" Panel.ZIndex="100">

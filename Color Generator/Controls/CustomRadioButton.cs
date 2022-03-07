@@ -6,22 +6,22 @@ namespace Color_Generator.Controls
 {
     public class CustomRadioButton : RadioButton
     {
-        public static readonly DependencyProperty DotColorProperty =
-           DependencyProperty.Register("DotFill", typeof(Brush), typeof(CustomRadioButton));
+        public static readonly DependencyProperty CheckFillProperty =
+           DependencyProperty.Register("CheckFill", typeof(Brush), typeof(CustomRadioButton));
 
         public static readonly DependencyProperty StrokeThicknessProperty =
             DependencyProperty.Register("StrokeThickness", typeof(double), typeof(CustomRadioButton), new UIPropertyMetadata(2.0));
 
-        public Brush DotFill
+        public Brush CheckFill
         {
-            get { return (Brush)GetValue(DotColorProperty); }
-            set { SetValue(DotColorProperty, value); }
+            get => (Brush)GetValue(CheckFillProperty);
+            set => SetValue(CheckFillProperty, value);
         }
 
         public double StrokeThickness
         {
-            get { return (double)GetValue(StrokeThicknessProperty); }
-            set { SetValue(StrokeThicknessProperty, value); }
+            get => (double)GetValue(StrokeThicknessProperty);
+            set => SetValue(StrokeThicknessProperty, value);
         }
 
         private static void OnStrokeThicknessChanged(DependencyObject d, DependencyPropertyChangedEventArgs e)

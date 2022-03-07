@@ -12,18 +12,19 @@
     <Color x:Key="bluegray-30">#41474d</Color>
     <Color x:Key="bluegray-35">#4c5359</Color>
     <Color x:Key="bluegray-40">#575e66</Color>
+    <Color x:Key="bluegray-65">#8E9AA5</Color>
     <Color x:Key="bluegray-80">#adbdcc</Color>
 
     <Color x:Key="primary-80">#2967cc</Color>
     <Color x:Key="primary-85">#2b6ed9</Color>
 
-    <SolidColorBrush x:Key="Dark.Surface.Background.Primary" Color="{StaticResource bluegray-22}" />
-    <SolidColorBrush x:Key="Dark.Surface.Background.Secondary" Color="{StaticResource bluegray-20}" />
+    <SolidColorBrush x:Key="Dark.Surface.Background.Primary" Color="{StaticResource bluegray-20}" />
+    <SolidColorBrush x:Key="Dark.Surface.Background.Secondary" Color="{StaticResource bluegray-22}" />
     <SolidColorBrush x:Key="Dark.Surface.Background.Tertiary" Color="{StaticResource bluegray-14}" />
 
     <SolidColorBrush x:Key="Dark.Btn.Disabled.Background" Color="#3a3f45"/>
     <SolidColorBrush x:Key="Dark.Btn.Disabled.Border" Color="Transparent"/>
-    <SolidColorBrush x:Key="Dark.Btn.Disabled.Foreground" Color="{StaticResource bluegray-30}"/>
+    <SolidColorBrush x:Key="Dark.Btn.Disabled.Foreground" Color="#FFF"/>
 
     <SolidColorBrush x:Key="Dark.Btn.Primary.Static.Background" Color="{StaticResource primary-80}" />
     <SolidColorBrush x:Key="Dark.Btn.Primary.Static.Foreground" Color="#FFF" />
@@ -37,6 +38,7 @@
 
     <SolidColorBrush x:Key="Dark.Btn.Danger.Static.Background" Color="#F93B3B" />
     <SolidColorBrush x:Key="Dark.Btn.Danger.Static.Foreground" Color="#FFF" />
+    <SolidColorBrush x:Key="Dark.Btn.Danger.Disabled.Foreground" Color="#FFF" />
     <SolidColorBrush x:Key="Dark.Btn.Danger.MouseOver.Background" Color="#FF4C4C" />
     <SolidColorBrush x:Key="Dark.Btn.Danger.Pressed.Background" Color="#D13232" />
 
@@ -52,7 +54,7 @@
     <SolidColorBrush x:Key="Dark.CheckBox.Static.Foreground" Color="{StaticResource bluegray-80}" />
     <SolidColorBrush x:Key="Dark.CheckBox.Static.Border" Color="Transparent" />
     <SolidColorBrush x:Key="Dark.CheckBox.Checked.Background" Color="{StaticResource primary-80}" />
-    <SolidColorBrush x:Key="Dark.CheckBox.Checked.Mark.Fill" Color="{StaticResource bluegray-80}" />
+    <SolidColorBrush x:Key="Dark.CheckBox.Checked.Check" Color="{StaticResource bluegray-80}" />
     <SolidColorBrush x:Key="Dark.CheckBox.Disabled.Background" Color="{StaticResource bluegray-19}"/>
     <SolidColorBrush x:Key="Dark.CheckBox.Disabled.Border" Color="Transparent"/>
     <SolidColorBrush x:Key="Dark.CheckBox.Disabled.Foreground" Color="{StaticResource bluegray-30}"/>
@@ -62,7 +64,7 @@
     <SolidColorBrush x:Key="Dark.RadioButton.Static.Foreground" Color="{StaticResource bluegray-80}" />
     <SolidColorBrush x:Key="Dark.RadioButton.Static.Border" Color="Transparent" />
     <SolidColorBrush x:Key="Dark.RadioButton.Checked.Background" Color="{StaticResource primary-80}" />
-    <SolidColorBrush x:Key="Dark.RadioButton.Checked.Dot.Fill" Color="{StaticResource bluegray-80}" />
+    <SolidColorBrush x:Key="Dark.RadioButton.Checked.Check" Color="{StaticResource bluegray-80}" />
     <SolidColorBrush x:Key="Dark.RadioButton.Disabled.Background" Color="{StaticResource bluegray-19}"/>
     <SolidColorBrush x:Key="Dark.RadioButton.Disabled.Border" Color="Transparent"/>
     <SolidColorBrush x:Key="Dark.RadioButton.Disabled.Foreground" Color="{StaticResource bluegray-30}"/>
@@ -93,13 +95,13 @@
     <SolidColorBrush x:Key="Dark.ComboBoxItem.Selected.Background" Color="#2D3033" />
 
     <SolidColorBrush x:Key="Dark.Slider.Static.DecreaseButton.Background" Color="{StaticResource primary-80}" />
-    <SolidColorBrush x:Key="Dark.Slider.Static.Track.Background" Color="{StaticResource bluegray-15}" />
-    <SolidColorBrush x:Key="Dark.Slider.Static.Thumb.Background" Color="{StaticResource bluegray-80}" />
+    <SolidColorBrush x:Key="Dark.Slider.Static.IncreaseButton.Background" Color="{StaticResource bluegray-15}" />
+    <SolidColorBrush x:Key="Dark.Slider.Static.Thumb.Background" Color="{StaticResource primary-80}" />
     <SolidColorBrush x:Key="Dark.Slider.Static.Thumb.Stroke" Color="Transparent" />
     <SolidColorBrush x:Key="Dark.Slider.Static.Ticks" Color="{StaticResource bluegray-40}" />
     <SolidColorBrush x:Key="Dark.Slider.Static.SelectionRange" Color="#8C9199" />
-    <SolidColorBrush x:Key="Dark.Slider.Disabled.DecreaseButton.Background" Color="{StaticResource bluegray-19}" />
-    <SolidColorBrush x:Key="Dark.Slider.Disabled.Track.Background" Color="{StaticResource bluegray-19}" />
+    <SolidColorBrush x:Key="Dark.Slider.Disabled.DecreaseRepeatButton.Background" Color="{StaticResource bluegray-19}" />
+    <SolidColorBrush x:Key="Dark.Slider.Disabled.IncreaseRepeatButton.Background" Color="{StaticResource bluegray-19}" />
     <SolidColorBrush x:Key="Dark.Slider.Disabled.Thumb.Background" Color="{StaticResource bluegray-30}" />
     <SolidColorBrush x:Key="Dark.Slider.Disabled.Ticks" Color="{StaticResource bluegray-30}" />
 
@@ -109,15 +111,15 @@
     <SolidColorBrush x:Key="Dark.ListView.Disabled.Foreground" Color="{StaticResource bluegray-30}"/>
     <SolidColorBrush x:Key="Dark.ListView.Scrollbar.Track.Background" Color="Transparent" />
     <SolidColorBrush x:Key="Dark.ListView.Scrollbar.Thumb.Background" Color="{StaticResource bluegray-10}" />
-    <SolidColorBrush x:Key="Dark.ListView.Scrollbar.LineButton.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="Dark.ListView.Scrollbar.LineButton.Arrow" Color="Transparent" />
+    <SolidColorBrush x:Key="Dark.ListView.Scrollbar.LineButton.Background" Color="{StaticResource bluegray-12}" />
+    <SolidColorBrush x:Key="Dark.ListView.Scrollbar.LineButton.Arrow" Color="{StaticResource bluegray-30}" />
     <SolidColorBrush x:Key="Dark.ListViewItem.MouseOver.Background" Color="{StaticResource bluegray-19}" />
     <SolidColorBrush x:Key="Dark.ListViewItem.MouseOver.Foreground" Color="{StaticResource bluegray-80}" />
     <SolidColorBrush x:Key="Dark.ListViewItem.Selected.Background" Color="{StaticResource bluegray-15}" />
     <SolidColorBrush x:Key="Dark.ListViewItem.Selected.Foreground" Color="{StaticResource bluegray-80}" />
 
-    <SolidColorBrush x:Key="Dark.ScrollViewer.Scrollbar.Track.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="Dark.ScrollViewer.Scrollbar.Thumb.Background" Color="{StaticResource bluegray-16}" />
-    <SolidColorBrush x:Key="Dark.ScrollViewer.Scrollbar.LineButton.Background" Color="Transparent" />
-    <SolidColorBrush x:Key="Dark.ScrollViewer.Scrollbar.LineButton.Arrow" Color="Transparent" />
+    <SolidColorBrush x:Key="Dark.ScrollViewer.Scrollbar.Track.Background" Color="{StaticResource bluegray-12}" />
+    <SolidColorBrush x:Key="Dark.ScrollViewer.Scrollbar.Thumb.Background" Color="{StaticResource bluegray-30}" />
+    <SolidColorBrush x:Key="Dark.ScrollViewer.Scrollbar.LineButton.Background" Color="{StaticResource bluegray-12}" />
+    <SolidColorBrush x:Key="Dark.ScrollViewer.Scrollbar.LineButton.Arrow" Color="{StaticResource bluegray-30}" />
 </ResourceDictionary>

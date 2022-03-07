@@ -10,10 +10,21 @@ namespace Color_Generator.Models
 {
     public class UserColor : ObservableObject
     {
+        private int _a;
         private int _r;
         private int _g;
         private int _b;
-        private string _hex;
+        //private string _hex;
+
+        public int A
+        {
+            get => _a;
+            set
+            {
+                _a = value;
+                OnPropertyChanged();
+            }
+        }
 
         public int R
         {
@@ -45,30 +56,34 @@ namespace Color_Generator.Models
             }
         }
 
-        public string Hex
-        {
-            get => _hex;
-            set
-            {
-                _hex = value;
-                OnPropertyChanged();
-                SetRGBFromHex(_hex);
-            }
-        }
+        //public string Hex
+        //{
+        //    get => _hex;
+        //    set
+        //    {
+        //        _hex = value;
+        //        OnPropertyChanged();
+        //        SetRGBFromHex(_hex);
+        //    }
+        //}
 
-        private void SetRGBFromHex(string hex)
-        {
-            Color c = HexConverterService.ConvertToColor($"{hex}");
+        //private void SetRGBFromHex(string hex)
+        //{
+        //    if (hex.Length < 3)
+        //        return;
 
-            R = c.R;
-            G = c.G;
-            B = c.B;
-        }
+        //    Color c = HexConverterService.ConvertToColor($"{hex}");
+
+        //    R = c.R;
+        //    G = c.G;
+        //    B = c.B;
+        //}
 
         public UserColor Copy()
         {
             return new UserColor()
             {
+                A = _a,
                 R = _r,
                 G = _g,
                 B = _b

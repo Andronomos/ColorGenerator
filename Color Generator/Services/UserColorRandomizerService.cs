@@ -1,4 +1,5 @@
 ﻿using Color_Generator.Models;
+using Color_Generator.Stores;
 using System;
 
 namespace Color_Generator.Services
@@ -7,15 +8,19 @@ namespace Color_Generator.Services
     {
         private static readonly Random _rand = new();
 
-        public static void Randomize(UserColor userColor)
+        public static void Randomize(SettingsStore settingsStore, UserColor userColor)
         {
-            int r = _rand.Next(0, 255);
-            int g = _rand.Next(0, 255);
-            int b = _rand.Next(0, 255);
+            if (!settingsStore.AlphaIsLocked)
+                userColor.A = _rand.Next(0, 255);
 
-            userColor.R = r;
-            userColor.G = g;
-            userColor.B = b;
+            if (!settingsStore.RedIsLocked)
+                userColor.R = _rand.Next(0, 255);
+
+            if (!settingsStore.GreenIsLocked)
+                userColor.G = _rand.Next(0, 255);
+
+            if (!settingsStore.BlueIsLocked)
+                userColor.B = _rand.Next(0, 255);
         }
     }
 }

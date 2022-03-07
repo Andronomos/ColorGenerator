@@ -7,13 +7,14 @@ namespace Color_Generator.Commands
     {
         private readonly ColorStore _colorStore;
         private readonly SaveColorsService _saveColorsService;
-        private readonly string _savePath;
+        private readonly SettingsStore _settingsStore;
 
-        public SavePinnedColorsCommand(ColorStore colorStore, int bitmapWidth, int bitmapHeight, string savePath)
+
+        public SavePinnedColorsCommand(ColorStore colorStore, SettingsStore settingsStore)
         {
             _colorStore = colorStore;
-            _savePath = savePath;
-            SaveColorsService saveColorsService = new SaveColorsService(bitmapWidth, bitmapHeight, _savePath);
+            _settingsStore = settingsStore;
+            SaveColorsService saveColorsService = new(_settingsStore);
             _saveColorsService = saveColorsService;
         }
 

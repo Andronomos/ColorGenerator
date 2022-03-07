@@ -27,7 +27,8 @@
         </Setter>
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value=".4"/>
+                <Setter Property="Cursor" Value="No"/>
+                <Setter Property="Opacity" Value="0.5" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -80,7 +81,8 @@
         <Setter Property="BorderThickness" Value="0" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value=".8"/>
+                <Setter Property="Cursor" Value="No"/>
+                <Setter Property="Opacity" Value="0.9" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -94,7 +96,8 @@
         <Setter Property="BorderThickness" Value="1" />
         <Style.Triggers>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value=".8"/>
+                <Setter Property="Cursor" Value="No"/>
+                <Setter Property="Opacity" Value="0.9" />
             </Trigger>
         </Style.Triggers>
     </Style>
@@ -102,7 +105,7 @@
     <Style x:Key="Dark.CheckBox" BasedOn="{StaticResource {x:Type controls:CustomCheckBox}}" TargetType="{x:Type controls:CustomCheckBox}">
         <Setter Property="Background" Value="{StaticResource Dark.CheckBox.Static.Background}" />
         <Setter Property="Foreground" Value="{StaticResource Dark.CheckBox.Static.Foreground}" />
-        <Setter Property="CheckMarkBrush" Value="{StaticResource Dark.CheckBox.Checked.Mark.Fill}" />
+        <Setter Property="CheckMarkBrush" Value="{StaticResource Dark.CheckBox.Checked.Check}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="36" />
         <Setter Property="Padding" Value="5,0,0,0" />
@@ -112,8 +115,7 @@
                 <Setter Property="Background" Value="{StaticResource Dark.CheckBox.Checked.Background}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{StaticResource Dark.CheckBox.Disabled.Background}" />
-                <Setter Property="Opacity" Value=".5"/>
+                <Setter Property="Opacity" Value="0.5" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -130,7 +132,7 @@
     <Style x:Key="Dark.RadioButton" BasedOn="{StaticResource {x:Type controls:CustomRadioButton}}" TargetType="{x:Type controls:CustomRadioButton}">
         <Setter Property="Background" Value="{StaticResource Dark.RadioButton.Static.Background}" />
         <Setter Property="Foreground" Value="{StaticResource Dark.RadioButton.Static.Foreground}" />
-        <Setter Property="DotFill" Value="{StaticResource Dark.RadioButton.Checked.Dot.Fill}" />
+        <Setter Property="CheckFill" Value="{StaticResource Dark.RadioButton.Checked.Check}" />
         <Setter Property="VerticalContentAlignment" Value="Center" />
         <Setter Property="MinHeight" Value="36" />
         <Setter Property="Padding" Value="5,0,0,0" />
@@ -140,8 +142,7 @@
                 <Setter Property="Background" Value="{StaticResource Dark.RadioButton.Checked.Background}"/>
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{StaticResource Dark.CheckBox.Disabled.Background}" />
-                <Setter Property="Opacity" Value=".5"/>
+                <Setter Property="Opacity" Value="0.5" />
             </Trigger>
             <MultiTrigger>
                 <MultiTrigger.Conditions>
@@ -156,16 +157,16 @@
     </Style>
 
     <Style x:Key="Dark.ToggleSwitch" BasedOn="{StaticResource {x:Type controls:ToggleSwitch}}" TargetType="{x:Type controls:ToggleSwitch}">
-        <Setter Property="Width" Value="60" />
         <Setter Property="Background" Value="{StaticResource Dark.ToggleSwitch.Static.Background}" />
+        <Setter Property="Foreground" Value="{StaticResource Dark.ToggleSwitch.Static.Foreground}" />
         <Setter Property="BorderThickness" Value="0" />
         <Setter Property="ThumbMargin" Value="3" />
-        <Setter Property="ThumbWidth" Value="20" />
-        <Setter Property="ThumbHeight" Value="20" />
-        <Setter Property="ThumbCornerRadius" Value="2" />
+        <Setter Property="ThumbWidth" Value="12" />
+        <Setter Property="ThumbHeight" Value="12" />
+        <Setter Property="ThumbCornerRadius" Value="320" />
         <Setter Property="ThumbBackground" Value="{StaticResource Dark.ToggleSwitch.Static.Thumb.Background}" />
-        <Setter Property="TrackHeight" Value="30" />
-        <Setter Property="TrackCornerRadius" Value="2" />
+        <Setter Property="TrackHeight" Value="20" />
+        <Setter Property="TrackCornerRadius" Value="10" />
         <Style.Triggers>
             <Trigger Property="IsChecked" Value="True">
                 <Setter Property="Background" Value="{StaticResource Dark.ToggleSwitch.Checked.Background}" />
@@ -173,18 +174,18 @@
                 <Setter Property="ThumbMargin" Value="0 3 3 3" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Background" Value="{StaticResource Dark.ToggleSwitch.Disabled.Background}" />
-                <Setter Property="Opacity" Value=".5"/>
+                <Setter Property="Cursor" Value="No" />
+                <Setter Property="Opacity" Value="0.5" />
             </Trigger>
-            <MultiTrigger>
+            <!--<MultiTrigger>
                 <MultiTrigger.Conditions>
                     <Condition Property="IsEnabled" Value="False" />
                     <Condition Property="IsChecked" Value="True" />
                 </MultiTrigger.Conditions>
                 <MultiTrigger.Setters>
-                    <Setter Property="Background" Value="{StaticResource Dark.ToggleSwitch.Checked.Background}" />
+                    <Setter Property="Background" Value="{StaticResource Dark.ToggleSwitch.Disabled.Background}" />
                 </MultiTrigger.Setters>
-            </MultiTrigger>
+            </MultiTrigger>-->
         </Style.Triggers>
     </Style>
 
@@ -203,7 +204,47 @@
                 <Setter Property="Background" Value="{StaticResource Dark.ComboBox.Editable.Background}" />
             </Trigger>
             <Trigger Property="IsEnabled" Value="False">
-                <Setter Property="Opacity" Value=".6" />
+                <Setter Property="Cursor" Value="None" />
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Dark.Slider" BasedOn="{StaticResource {x:Type controls:CustomSlider}}" TargetType="{x:Type controls:CustomSlider}">
+        <Setter Property="DecreaseRepeatButton" Value="{StaticResource Dark.Slider.Static.DecreaseButton.Background}" />
+        <Setter Property="IncreaseRepeatButton" Value="{StaticResource Dark.Slider.Static.IncreaseButton.Background}" />
+        <Setter Property="ThumbBrush" Value="{StaticResource Dark.Slider.Static.Thumb.Background}" />
+        <Setter Property="ThumbStroke" Value="{StaticResource Dark.Slider.Static.Thumb.Stroke}" />
+        <Setter Property="ThumbStrokeThickness" Value="0" />
+        <Setter Property="ThumbCornerRadius" Value="3" />
+        <Setter Property="TickColor" Value="{StaticResource Dark.Slider.Static.Ticks}" />
+        <Setter Property="SelectionRange" Value="{StaticResource Dark.Slider.Static.SelectionRange}" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <!--<Setter Property="DecreaseRepeatButton" Value="{StaticResource Dark.Slider.Disabled.DecreaseRepeatButton.Background}" />
+                <Setter Property="IncreaseRepeatButton" Value="{StaticResource Dark.Slider.Disabled.IncreaseRepeatButton.Background}" />
+                <Setter Property="TickColor" Value="{StaticResource Dark.Slider.Disabled.Ticks}" />
+                <Setter Property="Thumb" Value="{StaticResource Dark.Slider.Disabled.Thumb.Background}" />-->
+                <Setter Property="ThumbStrokeThickness" Value="0" />
+                <Setter Property="Opacity" Value="0.5" />
+            </Trigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="Dark.ListView" BasedOn="{StaticResource {x:Type controls:CustomListView}}" TargetType="{x:Type controls:CustomListView}">
+        <Setter Property="Background" Value="{StaticResource Dark.ListView.Static.Background}" />
+        <Setter Property="Foreground" Value="{StaticResource Dark.ListView.Static.Foreground}" />
+        <Setter Property="ItemMouseOverBackground" Value="{StaticResource Dark.ListViewItem.MouseOver.Background}" />
+        <Setter Property="ItemMouseOverForeground" Value="{StaticResource Dark.ListViewItem.MouseOver.Foreground}" />
+        <Setter Property="ItemSelectedBackground" Value="{StaticResource Dark.ListViewItem.Selected.Background}" />
+        <Setter Property="ItemSelectedForeground" Value="{StaticResource Dark.ListViewItem.Selected.Foreground}" />
+        <Setter Property="OverridesDefaultStyle" Value="False" />
+        <Style.Triggers>
+            <Trigger Property="IsEnabled" Value="False">
+                <!--<Setter Property="Background" Value="{StaticResource Dark.ListView.Disabled.Background}" />
+                <Setter Property="Foreground" Value="{StaticResource Dark.ListView.Disabled.Foreground}" />-->
+                <Setter Property="Cursor" Value="None" />
+                <Setter Property="Opacity" Value="0.5" />
             </Trigger>
         </Style.Triggers>
     </Style>

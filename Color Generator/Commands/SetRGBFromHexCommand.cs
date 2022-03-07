@@ -11,7 +11,7 @@ namespace Color_Generator.Commands
 {
     public class SetRGBFromHexCommand : CommandBase
     {
-        private UserColor _userColor;
+        private readonly UserColor _userColor;
 
         public SetRGBFromHexCommand(UserColor userColor)
         {

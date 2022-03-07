@@ -8,7 +8,7 @@ using System.Windows.Controls;
 
 namespace Color_Generator.Validators
 {
-    public class RGBValidator : ValidationRule
+    public class ARGBValidator : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
         {

@@ -16,12 +16,14 @@ namespace Color_Generator
         private readonly NavigationStore _navigationStore;
         private readonly ModalNavigationStore _modalNavigationStore;
         private readonly ColorStore _colorStore;
+        private readonly SettingsStore _settingsStore;
 
         public App()
         {
-            _navigationStore = new NavigationStore();
-            _modalNavigationStore = new ModalNavigationStore();
-            _colorStore = new ColorStore();
+            _navigationStore = new();
+            _modalNavigationStore = new();
+            _colorStore = new();
+            _settingsStore = new();
         }
 
         protected override void OnStartup(StartupEventArgs e)
@@ -41,7 +43,7 @@ namespace Color_Generator
 
         private INavigationService CreateMainNavigationService()
         {
-            return new NavigationService<MainViewModel>(_navigationStore, () => new MainViewModel(_navigationStore, _colorStore));
+            return new NavigationService<MainViewModel>(_navigationStore, () => new MainViewModel(_settingsStore, _colorStore));
         }
 
         private INavigationService CreateCloseModalNavigationService()

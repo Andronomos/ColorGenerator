@@ -1,4 +1,5 @@
 ﻿using Color_Generator.Models;
+using Color_Generator.Stores;
 using System;
 using System.Collections.Generic;
 using System.Drawing;
@@ -11,11 +12,11 @@ namespace Color_Generator.Services
         private readonly int _bmpHeight;
         private readonly string _savePath;
 
-        public SaveColorsService(int bmpWidth, int bmpHeight, string savePath)
+        public SaveColorsService(SettingsStore settingsStore)
         {
-            _bmpWidth = bmpWidth;
-            _bmpHeight = bmpHeight;
-            _savePath = savePath;
+            _bmpWidth = settingsStore.SavedBitmapWidth;
+            _bmpHeight = settingsStore.SavedBitmapHeight;
+            _savePath = settingsStore.SavedBitmapPath;
         }
 
         public void Save(List<UserColor> pinnedColors)

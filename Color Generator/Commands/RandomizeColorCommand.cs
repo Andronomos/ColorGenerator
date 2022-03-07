@@ -1,25 +1,20 @@
-﻿using Color_Generator.Models;
-using Color_Generator.Services;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using Color_Generator.Services;
+using Color_Generator.ViewModels;
 
 namespace Color_Generator.Commands
 {
     public class RandomizeColorCommand : CommandBase
     {
-        private readonly UserColor _userColor;
+        private readonly MainViewModel _mainViewModel;
 
-        public RandomizeColorCommand(UserColor userColor)
+        public RandomizeColorCommand(MainViewModel mainViewModel)
         {
-            _userColor = userColor;
+            _mainViewModel = mainViewModel;
         }
 
         public override void Execute(object parameter)
         {
-            UserColorRandomizerService.Randomize(_userColor);
+            UserColorRandomizerService.Randomize(_mainViewModel.SettingsStore, _mainViewModel.CurrentColor);
         }
     }
 }

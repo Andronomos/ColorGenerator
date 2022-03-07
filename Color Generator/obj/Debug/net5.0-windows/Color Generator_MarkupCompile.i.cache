@@ -4,17 +4,17 @@
 winexe
 C#
 .cs
-F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\obj\Debug\net5.0-windows\
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\ColorGenerator\Color Generator\obj\Debug\net5.0-windows\
 Color_Generator
 none
 false
 TRACE;DEBUG;NET;NET5_0;NETCOREAPP
-F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\Color Generator\Color Generator\App.xaml
-171863159483
+F:\dev\code\dotnet\c#\vs solutions\.net 5\apps\ColorGenerator\Color Generator\App.xaml
+17-97138662
 
-46-171285853
+54-1424870219
 195543347333
-Controls\BindablePasswordBox.xaml;Controls\CustomCheckBox.xaml;Controls\CustomComboBox.xaml;Controls\CustomListView.xaml;Controls\CustomRadiobutton.xaml;Controls\CustomScrollbar.xaml;Controls\CustomSlider.xaml;Controls\CustomTabControl.xaml;Controls\Modal.xaml;Controls\Styles\DarkStyles.xaml;Controls\Styles\LightStyles.xaml;Controls\ToggleSwitch.xaml;MainWindow.xaml;Resources\Themes\Dark.xaml;Resources\Themes\Light.xaml;Views\DemoModal.xaml;Views\MainView.xaml;
+Controls\BindablePasswordBox.xaml;Controls\CustomCheckBox.xaml;Controls\CustomComboBox.xaml;Controls\CustomListView.xaml;Controls\CustomRadiobutton.xaml;Controls\CustomScrollbar.xaml;Controls\CustomSlider.xaml;Controls\CustomTabControl.xaml;Controls\Modal.xaml;Controls\Styles\DarkStyles.xaml;Controls\Styles\LightStyles.xaml;Controls\ToggleSwitch.xaml;MainWindow.xaml;Resources\Themes\Dark.xaml;Resources\Themes\Light.xaml;Views\MainView.xaml;Views\PinnedColorsView.xaml;
 
 True
 

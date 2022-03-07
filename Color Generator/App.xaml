@@ -9,7 +9,7 @@
         <ResourceDictionary>
             <ResourceDictionary.MergedDictionaries>
                 <ResourceDictionary Source="Resources\Themes\Dark.xaml" />
-                <ResourceDictionary Source="Resources\Themes\Light.xaml" />
+                <ResourceDictionary Source="Resources\Themes\Light.xaml" />                
                 <ResourceDictionary Source="Controls\CustomCheckBox.xaml" />
                 <ResourceDictionary Source="Controls\CustomComboBox.xaml" />
                 <ResourceDictionary Source="Controls\CustomListView.xaml" />
@@ -23,8 +23,10 @@
             </ResourceDictionary.MergedDictionaries>
             
             <converters:BooleanToVisibilityConverter x:Key="BooleanToVisibilityConverter" IsInversed="False" />
-            <converters:RGBToColorConverter x:Key="RGBToColorConverter" />
+            <converters:ARGBToColorConverter x:Key="ARGBToColorConverter" />
             <converters:RGBToHexStringConverter x:Key="RGBToHexStringConverter" />
+            <converters:PinSizeToBooleanConverter x:Key="PinSizeToBooleanConverter" />
+            <converters:InverseBooleanConverter x:Key="InverseBooleanConverter" />
 
             <DataTemplate DataType="{x:Type viewModels:MainViewModel}">
                 <views:MainView />

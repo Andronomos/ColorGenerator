@@ -17,7 +17,7 @@ namespace Color_Generator.Converters
             byte r = System.Convert.ToByte(values[0]);
             byte g = System.Convert.ToByte(values[1]);
             byte b = System.Convert.ToByte(values[2]);
-            return $"{r.ToString("X2")}{g.ToString("X2")}{b.ToString("X2")}";
+            return $"{r:X2}{g:X2}{b:X2}";
         }
 
         public object[] ConvertBack(object value, Type[] targetTypes, object parameter, CultureInfo culture)

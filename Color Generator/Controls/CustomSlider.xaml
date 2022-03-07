@@ -1,49 +1,116 @@
 ﻿<ResourceDictionary xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation" xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
                     xmlns:local="clr-namespace:Color_Generator.Controls">
 
-    <!-- RepeatButton -->
-    <Style x:Key="IncreaseButton" TargetType="{x:Type RepeatButton}">
-        <Setter Property="SnapsToDevicePixels" Value="true" />
-        <Setter Property="OverridesDefaultStyle" Value="true" />
-        <Setter Property="IsTabStop" Value="false" />
-        <Setter Property="Focusable" Value="false" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Border Background="{Binding IncreaseRepeatButton, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay, FallbackValue=White}"
-                            Height="6" />
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+    <ControlTemplate x:Key="RepeatButtonTransparent" TargetType="{x:Type RepeatButton}">
+        <Rectangle Fill="{TemplateBinding Background}" Height="{TemplateBinding Height}" Width="{TemplateBinding Width}"/>
+    </ControlTemplate>
+
+    <Style x:Key="RepeatButtonBase" TargetType="{x:Type RepeatButton}">
+        <Setter Property="OverridesDefaultStyle" Value="True"/>
+        <Setter Property="Background" Value="Transparent"/>
+        <Setter Property="Focusable" Value="False"/>
+        <Setter Property="IsTabStop" Value="False"/>
     </Style>
 
-    <Style x:Key="DecreaseButton" TargetType="{x:Type RepeatButton}">
-        <Setter Property="SnapsToDevicePixels" Value="true" />
-        <Setter Property="OverridesDefaultStyle" Value="true" />
-        <Setter Property="IsTabStop" Value="false" />
-        <Setter Property="Focusable" Value="false" />
+    <Style x:Key="DecreaseButton" BasedOn="{StaticResource RepeatButtonBase}" TargetType="{x:Type RepeatButton}">
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type RepeatButton}">
-                    <Border Background="{Binding DecreaseRepeatButton, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay, FallbackValue=Transparent}"
-                            Height="6" />
+                    <Border Height="{TemplateBinding Height}" Width="{TemplateBinding Width}">
+                        <Rectangle Name="rect" Fill="{Binding DecreaseRepeatButton, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}" Height="5.0" Width="5.0" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}" Value="Vertical">
+                            <Setter Property="Height" TargetName="rect" Value="Auto" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}" Value="Horizontal">
+                            <Setter Property="Width" TargetName="rect" Value="Auto" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelectionRangeEnabled, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                <Setter Property="Template" Value="{StaticResource RepeatButtonTransparent}" />
+            </DataTrigger>
+        </Style.Triggers>
+    </Style>
+
+    <Style x:Key="IncreaseButton" BasedOn="{StaticResource RepeatButtonBase}" TargetType="{x:Type RepeatButton}">
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type RepeatButton}">
+                    <Border Height="{TemplateBinding Height}" Width="{TemplateBinding Width}" Background="{TemplateBinding Background}">
+                        <Rectangle Name="rect" Width="5.0" Height="5.0" />
+                    </Border>
+                    <ControlTemplate.Triggers>
+                        <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}}" Value="Vertical">
+                            <Setter Property="Height" TargetName="rect" Value="Auto" />
+                        </DataTrigger>
+                        <DataTrigger Binding="{Binding Orientation, RelativeSource={RelativeSource TemplatedParent}}" Value="Horizontal">
+                            <Setter Property="Width" TargetName="rect" Value="Auto" />
+                        </DataTrigger>
+                    </ControlTemplate.Triggers>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+        <Style.Triggers>
+            <DataTrigger Binding="{Binding IsSelectionRangeEnabled, RelativeSource={RelativeSource TemplatedParent}}" Value="True">
+                <Setter Property="Template" Value="{StaticResource RepeatButtonTransparent}" />
+            </DataTrigger>
+        </Style.Triggers>
     </Style>
 
     <!-- Thumb -->
-    <Style x:Key="SliderThumb" TargetType="{x:Type Thumb}">
-        <Setter Property="SnapsToDevicePixels" Value="true" />
-        <Setter Property="OverridesDefaultStyle" Value="true" />
-        <Setter Property="Panel.ZIndex" Value="100" />
+    <Style x:Key="SliderThumbHorizontal" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Center" />
+        <Setter Property="Focusable" Value="False" />
         <Setter Property="Template">
             <Setter.Value>
                 <ControlTemplate TargetType="{x:Type Thumb}">
-                    <Rectangle x:Name="grip" Height="20" Width="13"
-                               Fill="{Binding Thumb, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay, FallbackValue=Gray}" 
-                               Stroke="{Binding ThumbStroke, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}" 
-                               StrokeThickness="{Binding ThumbStrokeThickness, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}"/>
+                    <Border x:Name="grip" Height="18" Width="11"
+                            Background="{Binding ThumbBrush, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay, FallbackValue=Gray}" 
+                            BorderBrush="{Binding ThumbStroke, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}" 
+                            BorderThickness="{Binding ThumbStrokeThickness, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}"
+                            CornerRadius="{Binding ThumbCornerRadius, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="SliderThumbVertical" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Border x:Name="grip" Height="11" Width="18"
+                            Background="{Binding ThumbBrush, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay, FallbackValue=Gray}" 
+                            BorderBrush="{Binding ThumbStroke, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}" 
+                            BorderThickness="{Binding ThumbStrokeThickness, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}"
+                            CornerRadius="{Binding ThumbCornerRadius, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}"/>
+                </ControlTemplate>
+            </Setter.Value>
+        </Setter>
+    </Style>
+
+    <Style x:Key="CircularThumb" TargetType="{x:Type Thumb}">
+        <Setter Property="SnapsToDevicePixels" Value="True" />
+        <Setter Property="OverridesDefaultStyle" Value="True" />
+        <Setter Property="VerticalAlignment" Value="Top" />
+        <Setter Property="Focusable" Value="False" />
+        <Setter Property="Template">
+            <Setter.Value>
+                <ControlTemplate TargetType="{x:Type Thumb}">
+                    <Ellipse x:Name="grip" Height="18" Width="18"
+                             Fill="{Binding ThumbBrush, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay, FallbackValue=Gray}" 
+                             Stroke="{Binding ThumbStroke, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}" 
+                             StrokeThickness="{Binding ThumbStrokeThickness, RelativeSource={RelativeSource AncestorType=local:CustomSlider}}"/>
                 </ControlTemplate>
             </Setter.Value>
         </Setter>
@@ -51,59 +118,132 @@
 
     <!-- Slider -->
     <Style TargetType="{x:Type local:CustomSlider}">
-        <Setter Property="MinHeight" Value="10" />
-        <Setter Property="Template">
-            <Setter.Value>
-                <ControlTemplate TargetType="{x:Type local:CustomSlider}">
-                    <Border>
-                        <Grid>
-                            <Grid.RowDefinitions>
-                                <RowDefinition />
-                                <RowDefinition Height="Auto" />
-                                <RowDefinition />
-                            </Grid.RowDefinitions>
+        <Style.Triggers>
+            <Trigger Property="Orientation" Value="Horizontal">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:CustomSlider}">
+                            <Border>
+                                <Grid>
+                                    <Grid.RowDefinitions>
+                                        <RowDefinition Height="Auto"/>
+                                        <RowDefinition Height="Auto" MinHeight="{TemplateBinding MinHeight}"/>
+                                        <RowDefinition Height="Auto"/>
+                                    </Grid.RowDefinitions>
 
-                            <TickBar Name="TopTick" Visibility="Collapsed" Grid.Row="0" Placement="{TemplateBinding TickPlacement}" Height="4"
-                                     Fill="{Binding TickColor, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}" />
+                                    <TickBar Name="TopTick" Height="4" Margin="0,0,0,4" Placement="Top" Grid.Row="0" Visibility="Collapsed"
+                                             Fill="{Binding TickColor, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}" />
 
-                            <Border Grid.Row="1" Margin="5 0" VerticalAlignment="Stretch" Height="6"
-                                    Background="{Binding IncreaseRepeatButton, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}"
-                                    BorderThickness="{TemplateBinding BorderThickness}"
-                                    BorderBrush="{TemplateBinding BorderBrush}" />
+                                    <TickBar Name="BottomTick" Height="4" Margin="0,4,0,0" Placement="Bottom" Grid.Row="2" Visibility="Collapsed"
+                                             Fill="{Binding TickColor, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}" />
 
-                            <Track Name="PART_Track" Grid.Row="1">
-                                <Track.DecreaseRepeatButton>
-                                    <RepeatButton Style="{StaticResource DecreaseButton}" Command="Slider.DecreaseLarge" />
-                                </Track.DecreaseRepeatButton>
-                                <Track.Thumb>
-                                    <Thumb x:Name="Thumb" Style="{StaticResource SliderThumb}" />
-                                </Track.Thumb>
-                                <Track.IncreaseRepeatButton>
-                                    <RepeatButton Style="{StaticResource IncreaseButton}" Command="Slider.IncreaseLarge" />
-                                </Track.IncreaseRepeatButton>
-                            </Track>
+                                    <Border x:Name="IncreaseRepeatButton" Grid.Row="1" VerticalAlignment="Center" Height="5.0"
+                                            Background="{Binding IncreaseRepeatButton, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}"
+                                            BorderThickness="{TemplateBinding BorderThickness}" BorderBrush="{TemplateBinding BorderBrush}">
+                                        <Canvas>
+                                            <Rectangle x:Name="PART_SelectionRange" 
+                                                       Fill="{Binding SelectionRange, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}"
+                                                       Visibility="Hidden" Height="4" />
+                                        </Canvas>
+                                    </Border>
 
-                            <TickBar Name="BottomTick" Visibility="Collapsed" Grid.Row="2" Placement="{TemplateBinding TickPlacement}" Height="4"
-                                     Fill="{Binding TickColor, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}" />
-                        </Grid>
-                    </Border>
-                    <ControlTemplate.Triggers>
-                        <Trigger Property="TickPlacement" Value="Both">
-                            <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
-                            <Setter Property="Visibility" Value="Visible" TargetName="BottomTick" />
-                        </Trigger>
-                        <Trigger Property="TickPlacement" Value="TopLeft">
-                            <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="BottomTick" />
-                        </Trigger>
-                        <Trigger Property="TickPlacement" Value="BottomRight">
-                            <Setter Property="Visibility" Value="Collapsed" TargetName="TopTick" />
-                            <Setter Property="Visibility" Value="Visible" TargetName="BottomTick" />
-                        </Trigger>
-                    </ControlTemplate.Triggers>
-                </ControlTemplate>
-            </Setter.Value>
-        </Setter>
+                                    <Track Name="PART_Track" Grid.Row="1">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource DecreaseButton}" Command="Slider.DecreaseLarge" />
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb x:Name="Thumb" Style="{StaticResource SliderThumbHorizontal}" />
+                                        </Track.Thumb>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource IncreaseButton}" Command="Slider.IncreaseLarge" />
+                                        </Track.IncreaseRepeatButton>
+                                    </Track>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="TickPlacement" Value="Both">
+                                    <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
+                                    <Setter Property="Visibility" Value="Visible" TargetName="BottomTick" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="TopLeft">
+                                    <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="BottomTick" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="BottomRight">
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="TopTick" />
+                                    <Setter Property="Visibility" Value="Visible" TargetName="BottomTick" />
+                                </Trigger>
+                                <Trigger Property="IsSelectionRangeEnabled" Value="True">
+                                    <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+            <Trigger Property="Orientation" Value="Vertical">
+                <Setter Property="Template">
+                    <Setter.Value>
+                        <ControlTemplate TargetType="{x:Type local:CustomSlider}">
+                            <Border>
+                                <Grid>
+                                    <Grid.ColumnDefinitions>
+                                        <ColumnDefinition Width="Auto"/>
+                                        <ColumnDefinition MinWidth="{TemplateBinding MinWidth}" Width="Auto"/>
+                                        <ColumnDefinition Width="Auto"/>
+                                    </Grid.ColumnDefinitions>
+
+                                    <TickBar x:Name="TopTick" Visibility="Collapsed" Grid.Column="0" Margin="0,0,4,0" Placement="Left" Width="4"
+                                             Fill="{Binding TickColor, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}" />
+
+                                    <TickBar x:Name="BottomTick" Visibility="Collapsed" Grid.Column="2" Margin="4,0,0,0" Placement="Right" Width="4"
+                                             Fill="{Binding TickColor, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}" />
+
+                                    <Border x:Name="IncreaseButton" Grid.Column="1" HorizontalAlignment="Center" Width="5.0"
+                                            Background="{Binding IncreaseRepeatButton, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}"
+                                            BorderThickness="{TemplateBinding BorderThickness}"
+                                            BorderBrush="{TemplateBinding BorderBrush}">
+                                        <Canvas>
+                                            <Rectangle x:Name="PART_SelectionRange" 
+                                                       Fill="{Binding SelectionRange, RelativeSource={RelativeSource AncestorType=local:CustomSlider}, Mode=TwoWay}"
+                                                       Visibility="Hidden" Width="4" />
+                                        </Canvas>
+                                    </Border>
+
+                                    <Track x:Name="PART_Track" Grid.Column="1">
+                                        <Track.DecreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource DecreaseButton}" Command="Slider.DecreaseLarge" />
+                                        </Track.DecreaseRepeatButton>
+                                        <Track.Thumb>
+                                            <Thumb x:Name="Thumb" Style="{StaticResource SliderThumbVertical}" />
+                                        </Track.Thumb>
+                                        <Track.IncreaseRepeatButton>
+                                            <RepeatButton Style="{StaticResource IncreaseButton}" Command="Slider.IncreaseLarge" />
+                                        </Track.IncreaseRepeatButton>
+                                    </Track>
+                                </Grid>
+                            </Border>
+                            <ControlTemplate.Triggers>
+                                <Trigger Property="TickPlacement" Value="Both">
+                                    <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
+                                    <Setter Property="Visibility" Value="Visible" TargetName="BottomTick" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="TopLeft">
+                                    <Setter Property="Visibility" Value="Visible" TargetName="TopTick" />
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="BottomTick" />
+                                </Trigger>
+                                <Trigger Property="TickPlacement" Value="BottomRight">
+                                    <Setter Property="Visibility" Value="Collapsed" TargetName="TopTick" />
+                                    <Setter Property="Visibility" Value="Visible" TargetName="BottomTick" />
+                                </Trigger>
+                                <Trigger Property="IsSelectionRangeEnabled" Value="True">
+                                    <Setter Property="Visibility" TargetName="PART_SelectionRange" Value="Visible"/>
+                                </Trigger>
+                            </ControlTemplate.Triggers>
+                        </ControlTemplate>
+                    </Setter.Value>
+                </Setter>
+            </Trigger>
+        </Style.Triggers>
     </Style>
-
 </ResourceDictionary>
